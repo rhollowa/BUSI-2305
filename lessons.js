@@ -40,7 +40,7 @@
       alert('Video not yet uploaded. Check back soon.');
       return;
     }
-    modalFrame.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`;
+    modalFrame.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`;
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
