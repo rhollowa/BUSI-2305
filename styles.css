@@ -520,6 +520,19 @@ section.page {
   box-shadow: 0 8px 24px rgba(0,0,0,0.06);
   border-color: var(--accent);
 }
+.video-card-empty {
+  border: 1px dashed var(--rule);
+  border-radius: 6px;
+  padding: 28px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+  font-style: italic;
+  background: transparent;
+}
+.week-empty {
+  opacity: 0.65;
+}
 .video-thumb {
   aspect-ratio: 16 / 9;
   background: linear-gradient(135deg, #2d2d2d 0%, #4a3525 100%);
