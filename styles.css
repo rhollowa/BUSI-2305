@@ -119,12 +119,13 @@ nav.primary a.active { color: var(--accent); background: var(--accent-soft); }
   font-family: var(--serif);
   font-weight: 500;
   font-size: clamp(38px, 5.5vw, 56px);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  line-height: 1.2;
+  letter-spacing: 0;
   color: var(--ink);
   margin-bottom: 20px;
   max-width: 800px;
-  padding-top: 0.08em;
+  padding: 0.1em 0.05em 0.15em;
+  font-feature-settings: "kern" 1, "liga" 1;
 }
 .hero h1 em {
   font-style: italic;
@@ -193,11 +194,12 @@ section.page {
   font-family: var(--serif);
   font-weight: 500;
   font-size: clamp(30px, 4vw, 44px);
-  line-height: 1.2;
-  letter-spacing: -0.015em;
+  line-height: 1.25;
+  letter-spacing: 0;
   color: var(--ink);
   margin-bottom: 14px;
-  padding-top: 0.08em;
+  padding: 0.1em 0.05em 0.15em;
+  font-feature-settings: "kern" 1, "liga" 1;
 }
 .section-head .sub {
   font-size: 16px;
