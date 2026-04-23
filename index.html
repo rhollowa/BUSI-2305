@@ -44,6 +44,79 @@
   </div>
 </div>
 
+<section class="page announcements-section" aria-labelledby="announcements-heading">
+  <div class="section-head">
+    <div class="num">Now playing</div>
+    <h2 id="announcements-heading">Announcements</h2>
+    <p class="sub">Newest at the top. Click any announcement to expand or collapse it.</p>
+  </div>
+
+  <div id="announcements-list" class="announcements-list" aria-live="polite">
+    <p class="announcements-loading">Loading announcements…</p>
+  </div>
+</section>
+
+<script>
+(function () {
+  var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  function fmtDate(iso) {
+    var parts = (iso || "").split("-");
+    if (parts.length !== 3) return iso || "";
+    var y = parts[0], m = parseInt(parts[1], 10), d = parseInt(parts[2], 10);
+    if (isNaN(m) || isNaN(d)) return iso;
+    return MONTHS[m - 1] + " " + d + ", " + y;
+  }
+  function escapeHTML(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+  function renderBody(text) {
+    // preserve paragraph breaks, keep it clean
+    return escapeHTML(text).split(/\n\s*\n/).map(function (p) {
+      return "<p>" + p.replace(/\n/g, "<br>") + "</p>";
+    }).join("");
+  }
+  function sortByDateDesc(items) {
+    return items.slice().sort(function (a, b) {
+      return (b.date || "").localeCompare(a.date || "");
+    });
+  }
+
+  var mount = document.getElementById("announcements-list");
+  if (!mount) return;
+
+  fetch("announcements.json", { cache: "no-store" })
+    .then(function (r) {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.json();
+    })
+    .then(function (items) {
+      if (!Array.isArray(items) || items.length === 0) {
+        mount.innerHTML = '<p class="announcements-empty">No announcements yet. Check back soon.</p>';
+        return;
+      }
+      items = sortByDateDesc(items);
+      var html = items.map(function (a, i) {
+        var open = i === 0 ? " open" : "";
+        return '' +
+          '<details class="announcement"' + open + '>' +
+            '<summary>' +
+              '<span class="announcement-date">' + escapeHTML(fmtDate(a.date)) + '</span>' +
+              '<span class="announcement-title">' + escapeHTML(a.title || "Announcement") + '</span>' +
+              '<span class="announcement-chevron" aria-hidden="true"></span>' +
+            '</summary>' +
+            '<div class="announcement-body">' + renderBody(a.body || "") + '</div>' +
+          '</details>';
+      }).join("");
+      mount.innerHTML = html;
+    })
+    .catch(function () {
+      mount.innerHTML = '<p class="announcements-empty">Announcements unavailable right now. Please refresh in a moment.</p>';
+    });
+})();
+</script>
+
 <section class="page">
   <div class="section-head">
     <div class="num">Start here</div>
@@ -130,3 +203,4 @@
 
 </body>
 </html>
+
