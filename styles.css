@@ -1127,3 +1127,85 @@ footer .institutional a { display: inline; color: var(--accent); }
     justify-self: end;
   }
 }
+
+/* ─── Back to home link (subpages) ─────────────────────────────────────── */
+.back-home {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 1.25rem 1.5rem 0 1.5rem;
+}
+.back-home a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 0.4rem 0.1rem;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.back-home a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+.back-home .arrow {
+  font-size: 1.05rem;
+  line-height: 1;
+  transition: transform 0.15s ease;
+}
+.back-home a:hover .arrow {
+  transform: translateX(-3px);
+}
+
+/* ─── Week files (downloads under a lecture) ───────────────────────────── */
+.week-files {
+  margin-top: 1rem;
+  padding: 0.9rem 1.1rem;
+  background: var(--paper-warm);
+  border: 1px solid var(--rule-soft);
+  border-left: 3px solid var(--muted-soft);
+  border-radius: 2px;
+}
+.files-label {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+.files-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.files-list a {
+  font-family: var(--serif);
+  font-size: 0.96rem;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 0.35rem 0;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  transition: color 0.15s ease;
+}
+.files-list a::before {
+  content: "↓";
+  color: var(--accent);
+  font-weight: bold;
+  margin-right: 0.15rem;
+}
+.files-list a:hover { color: var(--accent); }
+.file-ext {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
