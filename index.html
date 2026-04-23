@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BUSI 2305 — Business Statistics</title>
+<meta name="description" content="Business Statistics — Austin Community College. Asynchronous online course materials, schedule, and resources.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --ink-soft: #2d2d2d;
+    --paper: #fafaf7;
+    --paper-warm: #f5f3ed;
+    --rule: #d4d0c4;
+    --rule-soft: #e8e4d8;
+    --muted: #6b6557;
+    --muted-soft: #908a7c;
+    --accent: #8b3a1f;       /* deep terracotta — academic, not corporate */
+    --accent-soft: #f0e3dc;
+    --highlight: #f4ecd8;    /* soft cream highlight */
+    --serif: 'Fraunces', 'Iowan Old Style', 'Charter', Georgia, serif;
+    --sans: 'Source Sans 3', -apple-system, system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+    --max: 1080px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+  body {
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* — TOPBAR ————————————————————————————————— */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    backdrop-filter: blur(8px);
+  }
+  .topbar-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+  .crest {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    text-decoration: none;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .crest .num {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+  nav.primary {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+  nav.primary a {
+    font-size: 14px;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: color 0.15s, background 0.15s;
+    font-weight: 500;
+  }
+  nav.primary a:hover { color: var(--ink); background: var(--paper-warm); }
+
+  /* — HERO ————————————————————————————————— */
+  .hero {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 80px 32px 64px;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 32px;
+    width: 48px;
+    height: 4px;
+    background: var(--accent);
+  }
+  .hero .eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 24px;
+    max-width: 800px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-family: var(--serif);
+    color: var(--accent);
+    font-weight: 400;
+  }
+  .hero .lede {
+    font-size: 21px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 680px;
+    font-weight: 400;
+  }
+
+  /* — META STRIP ————————————————————————————————— */
+  .meta-strip {
+    background: var(--paper-warm);
+    border-bottom: 1px solid var(--rule);
+  }
+  .meta-strip-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 24px 32px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 24px;
+  }
+  .meta-item .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+  .meta-item .val {
+    font-size: 15px;
+    color: var(--ink);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  /* — SECTIONS ————————————————————————————————— */
+  section.page {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 96px 32px 24px;
+    scroll-margin-top: 80px;
+  }
+  section.page + section.page {
+    border-top: 1px solid var(--rule);
+    margin-top: 24px;
+  }
+  .section-head {
+    margin-bottom: 48px;
+  }
+  .section-head .num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .section-head h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(32px, 4.5vw, 48px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .section-head .sub {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 640px;
+    line-height: 1.55;
+  }
+
+  /* — CONTENT BLOCKS ————————————————————————————————— */
+  .prose {
+    max-width: 720px;
+  }
+  .prose p {
+    margin-bottom: 18px;
+    color: var(--ink-soft);
+    font-size: 17px;
+  }
+  .prose h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 24px;
+    color: var(--ink);
+    margin-top: 40px;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+  .prose ul, .prose ol {
+    margin: 16px 0 24px 22px;
+    color: var(--ink-soft);
+  }
+  .prose li { margin-bottom: 10px; }
+  .prose a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  .placeholder-note {
+    background: var(--highlight);
+    border-left: 3px solid var(--accent);
+    padding: 18px 22px;
+    border-radius: 0 4px 4px 0;
+    margin: 24px 0;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .placeholder-note strong {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  /* — SCHEDULE ————————————————————————————————— */
+  .schedule {
+    border-top: 1px solid var(--rule);
+  }
+  .week {
+    display: grid;
+    grid-template-columns: 80px 1fr 200px;
+    gap: 32px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    align-items: baseline;
+  }
+  .week .wk {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+  }
+  .week .wk-title {
+    font-family: var(--serif);
+    font-size: 20px;
+    color: var(--ink);
+    font-weight: 500;
+    line-height: 1.3;
+  }
+  .week .wk-title .topic {
+    display: block;
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 4px;
+    font-weight: 400;
+  }
+  .week .wk-due {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    text-align: right;
+    line-height: 1.5;
+  }
+  .week .wk-due .pill {
+    display: inline-block;
+    padding: 3px 10px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  /* — VIDEO GRID ————————————————————————————————— */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .video-card {
+    background: var(--paper-warm);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .video-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  }
+  .video-thumb {
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(135deg, #2d2d2d 0%, #4a3525 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.5);
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .video-thumb::after {
+    content: "▶";
+    position: absolute;
+    color: rgba(255,255,255,0.85);
+    font-size: 32px;
+  }
+  .video-thumb .lbl {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    color: rgba(255,255,255,0.6);
+    z-index: 1;
+  }
+  .video-meta {
+    padding: 16px 18px;
+  }
+  .video-meta .wk {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .video-meta .ttl {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--ink);
+    font-weight: 500;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .video-meta .dur {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* — ZOOM PANEL ————————————————————————————————— */
+  .zoom-panel {
+    background: var(--ink);
+    color: #f5f3ed;
+    border-radius: 8px;
+    padding: 40px;
+    margin-top: 24px;
+  }
+  .zoom-panel .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: rgba(245,243,237,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+  .zoom-panel h3 {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .zoom-panel .when {
+    color: rgba(245,243,237,0.7);
+    font-size: 16px;
+    margin-bottom: 32px;
+  }
+  .zoom-link-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: center;
+    padding: 18px 20px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
+    margin-bottom: 12px;
+  }
+  .zoom-link-row .link {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: #f4ecd8;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .zoom-link-row .open-btn {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    background: var(--accent);
+    color: white;
+    padding: 8px 18px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .zoom-link-row .open-btn:hover { background: #6e2d18; }
+  .zoom-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 24px;
+  }
+  .zoom-info-grid .item .lbl {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: rgba(245,243,237,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .zoom-info-grid .item .val {
+    font-size: 15px;
+    color: #f5f3ed;
+    font-family: var(--mono);
+  }
+
+  /* — RESOURCES GRID ————————————————————————————————— */
+  .res-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .res-card {
+    border: 1px solid var(--rule);
+    padding: 24px;
+    border-radius: 4px;
+    background: var(--paper);
+    transition: border-color 0.15s, transform 0.15s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .res-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+  .res-card .cat {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .res-card h4 {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--ink);
+    font-weight: 500;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .res-card p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* — FOOTER ————————————————————————————————— */
+  footer {
+    max-width: var(--max);
+    margin: 64px auto 0;
+    padding: 32px;
+    border-top: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 32px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  footer .col h5 {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  footer a { color: var(--ink-soft); text-decoration: none; display: block; padding: 3px 0; }
+  footer a:hover { color: var(--accent); }
+  footer .institutional {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  /* — RESPONSIVE ————————————————————————————————— */
+  @media (max-width: 720px) {
+    .topbar-inner { padding: 12px 20px; gap: 16px; flex-wrap: wrap; }
+    nav.primary { flex-wrap: wrap; gap: 0; }
+    nav.primary a { padding: 6px 8px; font-size: 13px; }
+    .hero { padding: 56px 20px 40px; }
+    .hero::before { left: 20px; }
+    section.page { padding: 64px 20px 24px; }
+    .week { grid-template-columns: 60px 1fr; gap: 16px; }
+    .week .wk-due { grid-column: 2; text-align: left; }
+    .zoom-info-grid { grid-template-columns: 1fr; }
+    footer { grid-template-columns: 1fr; }
+    .meta-strip-inner { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="#top" class="crest">
+      Business Statistics
+      <span class="num">BUSI · 2305</span>
+    </a>
+    <nav class="primary">
+      <a href="#syllabus">Syllabus</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#videos">Lectures</a>
+      <a href="#zoom">Office Hours</a>
+      <a href="#resources">Resources</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="eyebrow">Spring 2026 · Austin Community College</div>
+  <h1>Business Statistics — <em>making sense of numbers that matter.</em></h1>
+  <p class="lede">An asynchronous online course in applied statistics for business decision-making. Lectures release weekly. Live Zoom office hours every Tuesday and Thursday evening.</p>
+</section>
+
+<!-- META STRIP -->
+<div class="meta-strip">
+  <div class="meta-strip-inner">
+    <div class="meta-item">
+      <div class="label">Course</div>
+      <div class="val">BUSI 2305</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">Credit Hours</div>
+      <div class="val">3</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">Format</div>
+      <div class="val">Asynchronous online</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">Term</div>
+      <div class="val">Spring 2026</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">Instructor</div>
+      <div class="val">Russell Holloway</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">Office Hours</div>
+      <div class="val">Tue / Thu via Zoom</div>
+    </div>
+  </div>
+</div>
+
+<!-- SYLLABUS -->
+<section class="page" id="syllabus">
+  <div class="section-head">
+    <div class="num">01 — Syllabus</div>
+    <h2>Course overview &amp; expectations.</h2>
+    <p class="sub">The full syllabus, learning outcomes, grading policy, and academic conduct expectations for BUSI 2305.</p>
+  </div>
+
+  <div class="prose">
+    <div class="placeholder-note">
+      <strong>Awaiting upload</strong>
+      Full syllabus content is being finalized and will be posted here. Email the instructor with any urgent questions in the meantime.
+    </div>
+
+    <h3>Course Description</h3>
+    <p>BUSI 2305 introduces statistical methods used in business decision-making. Students learn to summarize data, estimate population characteristics, test hypotheses, and build simple predictive models. The course emphasizes interpretation over computation — the goal is to read a chart, a study, or a report and know whether the conclusion is defensible.</p>
+
+    <h3>Learning Outcomes</h3>
+    <p>By the end of this course, students will be able to:</p>
+    <ul>
+      <li>Summarize and visualize datasets using descriptive statistics and standard chart types</li>
+      <li>Apply concepts of probability and sampling to business contexts</li>
+      <li>Construct and interpret confidence intervals</li>
+      <li>Conduct hypothesis tests and explain the meaning of statistical significance</li>
+      <li>Fit and interpret simple linear regression models</li>
+      <li>Evaluate the quality of statistical claims in business reporting</li>
+    </ul>
+
+    <h3>Required Materials</h3>
+    <p>All required readings and lecture videos are provided through this site at no cost. A spreadsheet program (Excel, Google Sheets, or Numbers) is required for assignments.</p>
+
+    <h3>Grading</h3>
+    <ul>
+      <li>Weekly problem sets — 40%</li>
+      <li>Two midterm exams — 30%</li>
+      <li>Final project — 20%</li>
+      <li>Participation in office hours or discussion board — 10%</li>
+    </ul>
+
+    <h3>Communication</h3>
+    <p>Email is the fastest way to reach the instructor. For substantive questions about course material, please bring them to office hours when possible — most questions benefit other students too.</p>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section class="page" id="schedule">
+  <div class="section-head">
+    <div class="num">02 — Schedule</div>
+    <h2>Sixteen weeks. One topic at a time.</h2>
+    <p class="sub">Lectures release Monday morning. Problem sets are due Sunday at 11:59 PM. Exams are open during designated week windows.</p>
+  </div>
+
+  <div class="placeholder-note">
+    <strong>Live</strong>
+    Topic sequence is finalized. Specific reading assignments and problem set links will be added to each week as the term progresses.
+  </div>
+
+  <div class="schedule">
+    <div class="week">
+      <div class="wk">Week 01</div>
+      <div class="wk-title">Why Statistics Matters in Business
+        <span class="topic">Course logistics · types of data · scales of measurement</span>
+      </div>
+      <div class="wk-due"><span class="pill">Set 1 due Sun</span></div>
+    </div>
+    <div class="week">
+      <div class="wk">Week 02</div>
+      <div class="wk-title">Describing Data
+        <span class="topic">Frequency distributions · histograms · bar &amp; pie charts</span>
+      </div>
+      <div class="wk-due"><span class="pill">Set 2 due Sun</span></div>
+    </div>
+    <div class="week">
+      <div class="wk">Week 03</div>
+      <div class="wk-title">Measures of Center &amp; Spread
+        <span class="topic">Mean · median · mode · variance · standard deviation</span>
+      </div>
+      <div class="wk-due"><span class="pill">Set 3 due Sun</span></div>
+    </div>
+    <div class="week">
+      <div class="wk">Week 04</div>
+      <div class="wk-title">Probability Foundations
+        <span class="topic">Events · sample space · addition &amp; multiplication rules</span>
+      </div>
+      <div class="wk-due"><span class="pill">Set 4 due Sun</span></div>
+    </div>
+    <div class="week">
+      <div class="wk">Week 05</div>
+      <div class="wk-title">Discrete Probability Distributions
+        <span class="topic">Binomial · Poisson · expected value</span>
+      </div>
+      <div class="wk-due"><span class="pill">Set 5 due Sun</span></div>
+    </div>
+    <div class="week">
+      <div class="wk">Week 06</div>
+      <div class="wk-title">The Normal Distribution
+        <span class="topic">Z-scores · standardization · empirical rule</span>
+      </div>
+      <div class="wk-due"><span class="pill">Set 6 due Sun</span></div>
+    </div>
+    <div class="week">
+      <div class="wk">Week 07</div>
+      <div class="wk-title">Sampling &amp; the Central Limit Theorem
+        <span class="topic">Sampling distributions · CLT · sample size effects</span>
+      </div>
+      <div class="wk-due"><span class="pill">Set 7 due Sun</span></div>
+    </div>
+    <div class="week">
+      <div class="wk">Week 08</div>
+      <div class="wk-title">Midterm Exam I
+        <span class="topic">Cumulative through Week 7 · open in week window</span>
+      </div>
+      <div class="wk-due"><span class="pill" style="background:#1a1a1a;color:#f4ecd8;">Exam window</span></div>
+    </div>
+    <div class="week">
+      <div class="wk">Week 09</div>
+      <div class="wk-title">Confidence Intervals
+        <span class="topic">Estimation · margin of error · interpretation</span>
+      </div>
+      <div class="wk-due"><span class="pill">Set 8 due Sun</span></div>
+    </div>
+    <div class="week">
+      <div class="wk">Week 10</div>
+      <div class="wk-title">Hypothesis Testing — One Sample
+        <span class="topic">Null vs alternative · p-values · Type I &amp; II errors</span>
+      </div>
+      <div class="wk-due"><span class="pill">Set 9 due Sun</span></div>
+    </div>
+    <div class="week">
+      <div class="wk">Week 11</div>
+      <div class="wk-title">Hypothesis Testing — Two Samples
+        <span class="topic">Comparing means &amp; proportions · paired data</span>
+      </div>
+      <div class="wk-due"><span class="pill">Set 10 due Sun</span></div>
+    </div>
+    <div class="week">
+      <div class="wk">Week 12</div>
+      <div class="wk-title">Chi-Square &amp; ANOVA
+        <span class="topic">Goodness of fit · independence · comparing 3+ groups</span>
+      </div>
+      <div class="wk-due"><span class="pill">Set 11 due Sun</span></div>
+    </div>
+    <div class="week">
+      <div class="wk">Week 13</div>
+      <div class="wk-title">Correlation &amp; Simple Regression
+        <span class="topic">Scatterplots · correlation coefficient · least squares</span>
+      </div>
+      <div class="wk-due"><span class="pill">Set 12 due Sun</span></div>
+    </div>
+    <div class="week">
+      <div class="wk">Week 14</div>
+      <div class="wk-title">Interpreting Regression Output
+        <span class="topic">Coefficients · R-squared · predictions &amp; residuals</span>
+      </div>
+      <div class="wk-due"><span class="pill">Set 13 due Sun</span></div>
+    </div>
+    <div class="week">
+      <div class="wk">Week 15</div>
+      <div class="wk-title">Final Project Workshop
+        <span class="topic">Bring data · workshop analyses in office hours</span>
+      </div>
+      <div class="wk-due"><span class="pill">Project due</span></div>
+    </div>
+    <div class="week">
+      <div class="wk">Week 16</div>
+      <div class="wk-title">Midterm Exam II &amp; Wrap-Up
+        <span class="topic">Cumulative through Week 14 · final reflections</span>
+      </div>
+      <div class="wk-due"><span class="pill" style="background:#1a1a1a;color:#f4ecd8;">Exam window</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEOS -->
+<section class="page" id="videos">
+  <div class="section-head">
+    <div class="num">03 — Lectures</div>
+    <h2>Async lecture library.</h2>
+    <p class="sub">Each week's lecture releases Monday at 8:00 AM. Recordings remain available throughout the term — rewatch anything, anytime.</p>
+  </div>
+
+  <div class="placeholder-note">
+    <strong>Releasing weekly</strong>
+    New lectures will appear here as the term progresses. Click any card to open the video.
+  </div>
+
+  <div class="video-grid">
+    <div class="video-card"><div class="video-thumb"><span class="lbl">Week 01</span></div><div class="video-meta"><div class="wk">Week 01 · Available</div><div class="ttl">Why Statistics Matters in Business</div><div class="dur">~ 42 min · 4 segments</div></div></div>
+    <div class="video-card"><div class="video-thumb"><span class="lbl">Week 02</span></div><div class="video-meta"><div class="wk">Week 02 · Available</div><div class="ttl">Describing Data</div><div class="dur">~ 38 min · 3 segments</div></div></div>
+    <div class="video-card"><div class="video-thumb"><span class="lbl">Week 03</span></div><div class="video-meta"><div class="wk">Week 03 · Available</div><div class="ttl">Measures of Center &amp; Spread</div><div class="dur">~ 45 min · 4 segments</div></div></div>
+    <div class="video-card"><div class="video-thumb"><span class="lbl">Week 04</span></div><div class="video-meta"><div class="wk">Week 04 · Releases Mon</div><div class="ttl">Probability Foundations</div><div class="dur">~ 50 min · 5 segments</div></div></div>
+    <div class="video-card"><div class="video-thumb"><span class="lbl">Week 05</span></div><div class="video-meta"><div class="wk">Week 05 · Upcoming</div><div class="ttl">Discrete Probability Distributions</div><div class="dur">~ 48 min · 4 segments</div></div></div>
+    <div class="video-card"><div class="video-thumb"><span class="lbl">Week 06</span></div><div class="video-meta"><div class="wk">Week 06 · Upcoming</div><div class="ttl">The Normal Distribution</div><div class="dur">~ 44 min · 4 segments</div></div></div>
+  </div>
+</section>
+
+<!-- ZOOM OFFICE HOURS -->
+<section class="page" id="zoom">
+  <div class="section-head">
+    <div class="num">04 — Office Hours</div>
+    <h2>Live every Tuesday &amp; Thursday.</h2>
+    <p class="sub">Drop in any time during office hours. No appointment needed. Bring questions, problem sets, or just listen to other students' questions.</p>
+  </div>
+
+  <div class="zoom-panel">
+    <div class="label">Standing Zoom · Spring 2026</div>
+    <h3>Office Hours — BUSI 2305</h3>
+    <p class="when">Tuesdays and Thursdays · 7:00 PM – 8:00 PM Central Time</p>
+
+    <div class="zoom-link-row">
+      <span class="link">https://us02web.zoom.us/j/00000000000?pwd=PLACEHOLDER</span>
+      <a href="#" class="open-btn" onclick="alert('Replace this href with your Zoom meeting link.'); return false;">Open Zoom</a>
+    </div>
+
+    <div class="zoom-info-grid">
+      <div class="item">
+        <div class="lbl">Meeting ID</div>
+        <div class="val">000 0000 0000</div>
+      </div>
+      <div class="item">
+        <div class="lbl">Passcode</div>
+        <div class="val">busi2305</div>
+      </div>
+      <div class="item">
+        <div class="lbl">Dial in (US)</div>
+        <div class="val">+1 346 248 7799</div>
+      </div>
+      <div class="item">
+        <div class="lbl">Recording</div>
+        <div class="val">Saved &amp; posted weekly</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="prose" style="margin-top: 48px;">
+    <h3>What to Expect</h3>
+    <p>Office hours are informal. Show up with your camera on or off, with your name or a question, with everything ready or with nothing prepared. The standing format is:</p>
+    <ul>
+      <li><strong>First 15 minutes:</strong> walk through anything from the current week's lecture students want clarified</li>
+      <li><strong>Middle 30 minutes:</strong> open Q&amp;A on problem sets, exam prep, or general statistical thinking</li>
+      <li><strong>Last 15 minutes:</strong> bring your own dataset / project for live workshopping</li>
+    </ul>
+    <p>If you can't make either session, send an email and we'll find another time.</p>
+  </div>
+</section>
+
+<!-- RESOURCES -->
+<section class="page" id="resources">
+  <div class="section-head">
+    <div class="num">05 — Resources</div>
+    <h2>Tools, references, and support.</h2>
+    <p class="sub">External resources to supplement lectures. ACC support services are listed at the bottom — please use them.</p>
+  </div>
+
+  <div class="res-grid">
+    <a href="#" class="res-card">
+      <div class="cat">Reference</div>
+      <h4>OpenStax — Introductory Business Statistics</h4>
+      <p>Free open-source textbook. Mirrors the course sequence closely.</p>
+    </a>
+    <a href="#" class="res-card">
+      <div class="cat">Tool</div>
+      <h4>Excel Statistical Functions Cheat Sheet</h4>
+      <p>One-page reference for AVERAGE, STDEV, NORMDIST, T.TEST, and friends.</p>
+    </a>
+    <a href="#" class="res-card">
+      <div class="cat">Tool</div>
+      <h4>Google Sheets Statistics Add-on</h4>
+      <p>Built-in statistical functions for students working in Sheets.</p>
+    </a>
+    <a href="#" class="res-card">
+      <div class="cat">Practice</div>
+      <h4>Khan Academy — Statistics &amp; Probability</h4>
+      <p>Free practice problems and supplementary explanations.</p>
+    </a>
+    <a href="#" class="res-card">
+      <div class="cat">Reading</div>
+      <h4>How to Lie with Statistics</h4>
+      <p>Darrell Huff's classic. A short read on misleading statistical claims.</p>
+    </a>
+    <a href="#" class="res-card">
+      <div class="cat">Support</div>
+      <h4>ACC Learning Lab — Math &amp; Stats Tutoring</h4>
+      <p>Free one-on-one tutoring available online and in person.</p>
+    </a>
+  </div>
+
+  <div class="prose" style="margin-top: 64px;">
+    <h3>Academic Support &amp; Accommodations</h3>
+    <p>Students with documented disabilities who need accommodations should contact <a href="https://www.austincc.edu/students/student-accessibility-services">ACC Student Accessibility Services</a> as early in the term as possible. The instructor is committed to providing equitable access to course materials and assessments.</p>
+    <p>If you are experiencing personal, mental health, or financial difficulties that are affecting your coursework, please reach out. ACC has resources, and there is no penalty for asking for help.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="col">
+    <h5>BUSI 2305</h5>
+    <p class="institutional">Business Statistics is a 3-credit course offered by the Business Studies department at Austin Community College. This site supplements the official ACC course information at <a href="https://www.austincc.edu" style="color:var(--accent);">austincc.edu</a>.</p>
+  </div>
+  <div class="col">
+    <h5>Course</h5>
+    <a href="#syllabus">Syllabus</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#videos">Lectures</a>
+    <a href="#zoom">Office Hours</a>
+    <a href="#resources">Resources</a>
+  </div>
+  <div class="col">
+    <h5>Institution</h5>
+    <a href="https://www.austincc.edu">Austin Community College</a>
+    <a href="https://www.austincc.edu/students">Student Resources</a>
+    <a href="https://www.austincc.edu/students/student-accessibility-services">Accessibility</a>
+  </div>
+</footer>
+
+</body>
+</html>
